@@ -95,7 +95,7 @@ export default class ProductsController {
             return response.abort({
                 message: 'Error: failed to generate code allocator',
                 err: null
-            })
+            }, 500)
         }
 
         // * Store to DB

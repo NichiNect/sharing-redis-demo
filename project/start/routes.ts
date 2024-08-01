@@ -12,6 +12,7 @@ import { CodeAllocator } from '../app/helpers/code_allocator.js'
 import { ProductFactory } from '#database/factories/product_factory'
 import ProductsController from '#controllers/products_controller'
 import { CacheManager } from '../app/helpers/cache_manager.js'
+import TransactionsController from '#controllers/transactions_controller'
 
 router.get('/', async () => {
   return {
@@ -54,3 +55,7 @@ router.get('/flush-cache', async () => {
 router.get('/product-without-cache', [ProductsController, 'getWithoutCache'])
 router.get('/product-with-cache', [ProductsController, 'getWithCache'])
 router.post('/product-with-cache', [ProductsController, 'storeWithCache'])
+
+router.get('/transaction', [TransactionsController, 'index'])
+router.post('/transaction', [TransactionsController, 'createTransaction'])
+router.post('/transaction/:id/update-status', [TransactionsController, 'updateStatus'])
