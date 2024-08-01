@@ -52,6 +52,7 @@ router.get('/flush-cache', async () => {
   }
 })
 
+
 router.get('/product-without-cache', [ProductsController, 'getWithoutCache'])
 router.get('/product-with-cache', [ProductsController, 'getWithCache'])
 router.post('/product-with-cache', [ProductsController, 'storeWithCache'])

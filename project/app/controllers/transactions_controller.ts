@@ -6,6 +6,9 @@ import { CodeAllocator } from '../helpers/code_allocator.js'
 import TransactionDetail from '#models/transaction_detail'
 import { DateTime } from 'luxon'
 import stringHelpers from '@adonisjs/core/helpers/string'
+import queue from '@rlanz/bull-queue/services/main'
+import TransactionPaymentExpiredJob from '../jobs/transaction_payment_expired_job.js'
+import TransactionReminderPaymentJob from '../jobs/transaction_reminder_payment_job.js'
 
 export default class TransactionsController {
 
@@ -131,6 +134,26 @@ export default class TransactionsController {
         })
 
         const details = await TransactionDetail.createMany(assignTransactionId)
+
+        // * Dispatch queue reminder expired notification
+        queue.dispatch(TransactionReminderPaymentJob, {
+            transactionId: transaction.id
+        }, {
+            queueName: 'transaction_reminder_payment',
+            delay: 180000, // 3 minutes (miliseconds)
+            removeOnFail: true,
+            removeOnComplete: true
+        })
+
+        // * Dispatch queue to cancel transaction expired with send notification
+        queue.dispatch(TransactionPaymentExpiredJob, {
+            transactionId: transaction.id
+        }, {
+            queueName: 'transaction_payment_expired',
+            delay: 300000, // 5 minutes (miliseconds)
+            removeOnFail: true,
+            removeOnComplete: true
+        })
 
         const result: any = transaction
         result.transaction_details = details
