@@ -140,7 +140,7 @@ export default class TransactionsController {
             transactionId: transaction.id
         }, {
             queueName: 'transaction_reminder_payment',
-            delay: 180000, // 3 minutes (miliseconds)
+            delay: 60000, // 1 minutes (miliseconds)
             removeOnFail: true,
             removeOnComplete: true
         })
@@ -150,7 +150,7 @@ export default class TransactionsController {
             transactionId: transaction.id
         }, {
             queueName: 'transaction_payment_expired',
-            delay: 300000, // 5 minutes (miliseconds)
+            delay: 180000, // 3 minutes (miliseconds)
             removeOnFail: true,
             removeOnComplete: true
         })

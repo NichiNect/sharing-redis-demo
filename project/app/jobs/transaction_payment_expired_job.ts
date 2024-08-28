@@ -42,5 +42,5 @@ export default class TransactionPaymentExpiredJob extends Job {
     /**
      * This is an optional method that gets called when the retries has exceeded and is marked failed.
      */
-    async rescue(payload: TransactionPaymentExpiredJobPayload) {}
+    async rescue(_payload: TransactionPaymentExpiredJobPayload) {}
 }

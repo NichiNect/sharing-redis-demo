@@ -37,5 +37,5 @@ export default class TransactionReminderPaymentJob extends Job {
     /**
      * This is an optional method that gets called when the retries has exceeded and is marked failed.
      */
-    async rescue(payload: TransactionReminderPaymentJobPayload) {}
+    async rescue(_payload: TransactionReminderPaymentJobPayload) {}
 }

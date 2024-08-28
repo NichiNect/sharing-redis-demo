@@ -8,7 +8,7 @@ export const ProductFactory = factory
 
     const productName = faker.commerce.productName()
     const slug = stringHelpers.slug(productName)
-    const code = await CodeAllocator.generate('PRD') 
+    const code = await CodeAllocator.generate('PRD') || ''
 
     return {
       name: productName,
