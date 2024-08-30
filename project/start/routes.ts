@@ -22,7 +22,7 @@ router.get('/', async () => {
 
 router.get('/code-allocator', async () => {
 
-  const code = await CodeAllocator.generate('PRD')
+  const code = await CodeAllocator.generate('CUBE')
 
   return {
     message: 'Success',
@@ -36,7 +36,7 @@ router.get('/run-product-factory', async () => {
 
   return {
     message: 'Success',
-    data: product
+    data: `${product.length} data created.`
   }
 })
 

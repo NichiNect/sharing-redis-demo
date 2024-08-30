@@ -122,7 +122,7 @@ export default class TransactionsController {
             price: totalPrice,
             fee_price: this.FEE_TRANSACTION,
             total_price: totalPrice + this.FEE_TRANSACTION,
-            expired_payment: DateTime.now().plus({ minutes: 5 })
+            expired_payment: DateTime.now().plus({ minutes: 3 })
         })
 
         // * Store to transaction_details DB

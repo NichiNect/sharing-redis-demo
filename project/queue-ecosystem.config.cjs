@@ -1,3 +1,5 @@
+// ! Unused anymore. move to start/queue.ts and registered to adonisrc.ts file
+
 module.exports = {
     apps: [
         {
