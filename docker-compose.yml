@@ -30,11 +30,11 @@ services:
         container_name: 'redis-db'
         image: 'redis'
         ports:
-            - '6379:6379'
+            - '6300:6379'
         volumes:
             - 'redisvol:/data'
-        #     - './docker/redis/redis.conf:/usr/local/etc/redis/redis.conf'
-        # entrypoint: 'redis-server /usr/local/etc/redis/redis.conf'
+            - './docker/redis/redis.conf:/usr/local/etc/redis/redis.conf'
+        entrypoint: 'redis-server /usr/local/etc/redis/redis.conf'
         networks:
             - demo
 volumes:
